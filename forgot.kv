@@ -1,0 +1,46 @@
+#:kivy !
+     orientation: 'vertical'
+    
+       MDScreen:
+    
+            MDRectangleFlatButton:
+                text: "ALERT POPUP!"
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_release: app.show_alert_dialog()
+   
+           MDLabel:
+               id: my_label
+               text: "Some Stuff"
+               pos_hint: {'center_x': .95, 'center_y': .4}
+   
+           TextInput:
+                   id: forgot
+                   hint_text: "Email"
+                   font_name: "MPoppins"
+                   size_hint_y: .75
+                   pos_hint: {"center_x":.43,"center_y":.5}
+                   background_color: 1,1,1,0
+                   foreground_color: rgba(0,0,59,255)
+                   cursor_color: rgba(0,0,59,255)
+                   font_size: "14sp"
+                   cursor_widthL: "2sp"
+                   multiline: False
+                   password: True
+   
+           Button:
+               text: "SUBMIT"
+               size_hint: .66, .065
+               pos_hint: {"center_x":.5,"center_y":.34}
+               background_color: 0,0,0,0
+               font_name: "BPoppins"
+               canvas.before:
+                   Color:
+                       rgb: rgba(52,0,231,255)
+                   RoundedRectangle:
+                       size: self.size
+                       pos: self.pos
+                       radius: [5]
+               on_release:
+                   print("Sign in", login_email.text, login_password.text)
+                   app.my_firebaselogin.Login(login_email.text,login_password.text)
+   
